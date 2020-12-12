@@ -4,9 +4,7 @@ require_once("connect.php");
 $conn = new mysqli($servername, $username, $password, $dbname);
 
 if (isset($_POST['naprawaSubmit'])) {
-    if ($conn->connect_error) {
-        die("Connection error: " . $connect_error);
-    }
+    if ($conn->connect_error) die("Connection error: " . $connect_error);
 
     $ID_SAMOCHODU = 1;
     $ID_MECHANIKA = 2;
