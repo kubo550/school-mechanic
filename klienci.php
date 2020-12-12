@@ -7,7 +7,6 @@ if (isset($_POST['klientSubmit'])) {
     if ($conn->connect_error) {
         die("Connection error: " . $connect_error);
     }
-
     $imie = $_POST['imie'];
     $nazwisko = $_POST['nazwisko'];
     $telefon = $_POST['telefon'];
