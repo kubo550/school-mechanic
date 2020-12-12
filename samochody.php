@@ -74,9 +74,7 @@ if (isset($_POST['samochodySumbit'])) {
                 ?>
             </table>
         </div>
-
     </div>
-
 </body>
 
 </html>
