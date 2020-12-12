@@ -4,7 +4,6 @@ require_once("connect.php");
 $conn = new mysqli($servername, $username, $password, $dbname);
 
 if (isset($_POST['klientSubmit'])) {
-
     if ($conn->connect_error) {
         die("Connection error: " . $connect_error);
     }
@@ -16,19 +15,16 @@ if (isset($_POST['klientSubmit'])) {
 
     $sql = "INSERT INTO klient ( imie, nazwisko, telefon, adres) VALUES ('$imie', '$nazwisko', '$telefon', '$adres');";
 
-
     if ($conn->query($sql)) {
         echo "<div id='message'> Zmiany zostały zachowane pomyślnie! </div>";
     } else {
         echo "<div class='error' id='message'>Wystąpił błąd! </div>" . $conn->error;
     }
 };
-
 ?>
 
 <!DOCTYPE html>
 <html lang="pl">
-
 
 <body>
     <?php echo file_get_contents('header.php'); ?>
@@ -59,7 +55,6 @@ if (isset($_POST['klientSubmit'])) {
         </div>
         <div class="table">
             <table>
-
                 <?php
                 $query = "SELECT * FROM `klient`";
                 $res = mysqli_query($conn, $query);
