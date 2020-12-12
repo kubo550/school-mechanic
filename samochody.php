@@ -28,6 +28,9 @@ if (isset($_POST['samochodySumbit'])) {
     <?php echo file_get_contents('header.php'); ?>
 
     <div class="container">
+        <h2>Dodaj Samochód</h2>
+        <hr />
+
         <div class="form-wrapper">
             <form action="<?= $_SERVER['PHP_SELF']; ?>" method="POST">
                 <div class="form-group">
@@ -52,8 +55,21 @@ if (isset($_POST['samochodySumbit'])) {
             </form>
         </div>
 
-        <div class="table">
-            <table>
+        <hr />
+        <h2 class="text-center my-5">Wszystkie Samochody</h2>
+
+
+        <table class="table table-striped table-dark">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Marka</th>
+                    <th scope="col">Model</th>
+                    <th scope="col">Rocznik</th>
+                    <th scope="col">Przebieg</th>
+                </tr>
+            </thead>
+            <tbody>
 
                 <?php
                 $query = "SELECT * FROM `samochod`";
@@ -61,7 +77,7 @@ if (isset($_POST['samochodySumbit'])) {
 
                 while ($row = mysqli_fetch_assoc($res)) {
                     echo "<tr>";
-                    echo "<td>" . $row["id"] . "</td>";
+                    echo "<td class='thead-dark' >" . $row["id"] . "</td>";
                     echo "<td>" . $row["marka"] . "</td>";
                     echo "<td>" . $row["model"] . "</td>";
                     echo "<td>" . $row["rocznik"] . "</td>";
@@ -70,8 +86,9 @@ if (isset($_POST['samochodySumbit'])) {
                 }
                 mysqli_close($conn);
                 ?>
-            </table>
-        </div>
+            </tbody>
+        </table>
+
     </div>
 </body>
 
