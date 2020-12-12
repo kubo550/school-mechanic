@@ -4,9 +4,7 @@ require_once("connect.php");
 $conn = new mysqli($servername, $username, $password, $dbname);
 
 if (isset($_POST['samochodySumbit'])) {
-    if ($conn->connect_error) {
-        die("Connection error: " . $connect_error);
-    }
+    if ($conn->connect_error) die("Connection error: " . $connect_error);
     $marka = $_POST['marka'];
     $model = $_POST['model'];
     $rocznik = $_POST['rocznik'];
