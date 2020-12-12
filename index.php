@@ -1,22 +1,6 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pl">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" />
-
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
-
-    <link rel="stylesheet" href="./css/app.css">
-    <script defer src="https://code.jquery.com/jquery-3.5.1.slim.js"></script>
-    <script defer src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-
-
-    <title>Kurdziel serwis</title>
-
-</head>
 
 <body>
     <?php echo file_get_contents('header.php'); ?>
@@ -46,7 +30,7 @@
                     </div>
                     <div class="carousel-caption">
                         <h3 class="h3-responsive">Wpisz się na listę klientów</h3>
-                        <a href="klienci.html">
+                        <a href="klienci.php">
                             <button class="btn btn-primary">Dodaj Klienta</button>
                         </a>
                     </div>
@@ -58,7 +42,7 @@
                     </div>
                     <div class="carousel-caption">
                         <h3 class="h3-responsive">Samochody</h3>
-                        <a href="samochody.html">
+                        <a href="samochody.php">
                             <button class="btn btn-primary">Dodaj Samochód</button>
                         </a>
                     </div>
