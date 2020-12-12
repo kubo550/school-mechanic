@@ -35,8 +35,8 @@ body {
   z-index: 10;
   text-align: center;
   border-radius: 20px;
-  -webkit-animation: vanish 3s linear;
-          animation: vanish 3s linear;
+  -webkit-animation: vanish 3.5s linear;
+          animation: vanish 3.5s linear;
   -webkit-animation-fill-mode: forwards;
           animation-fill-mode: forwards;
 }
