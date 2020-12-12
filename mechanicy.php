@@ -5,7 +5,6 @@ $conn = new mysqli($servername, $username, $password, $dbname);
 
 if (isset($_POST['mechanikSubmit'])) {
     if ($conn->connect_error) die("Connection error: " . $connect_error);
-
     $imie = $_POST['imie'];
     $nazwisko = $_POST['nazwisko'];
     $telefon = $_POST['telefon'];
