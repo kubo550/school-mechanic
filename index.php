@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="pl">
 
-
 <body>
     <?php echo file_get_contents('header.php'); ?>
 
