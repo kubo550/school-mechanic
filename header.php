@@ -9,8 +9,6 @@
     <link rel="stylesheet" href="./css/app.css">
     <script defer src="https://code.jquery.com/jquery-3.5.1.slim.js"></script>
     <script defer src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-
-
     <title>Kurdziel serwis</title>
 
 </head>
