@@ -13,15 +13,30 @@ if (isset($_POST['naprawaSubmit'])) {
 
     $sql = "INSERT INTO `naprawa` (`id_samochodu`, `id_mechanika`, `data_naprawy`, `kwota`) VALUES ('$ID_SAMOCHODU', '$ID_SAMOCHODU', '$data', '$kwota');";
 
-    echo $conn->query($sql) ? ("<div class='success' id='message'> Zmiany zostały zachowane pomyślnie! </div>") : ("<div class='error' id='message'>Wystąpił błąd! </div>" . $conn->error);
+    echo $conn->query($sql) ? ("<div class='success' id='message'> Zmiany zostały zachowane pomyślnie! </div>") : ("<div class='error' id='message'>Wystąpił błąd! $conn->error </div>");
 };
+if (isset($_GET['delete'])) {
+    $id = $_GET['delete'];
+    $sql = "DELETE FROM `naprawa` WHERE `naprawa`.`id` = $id";
+    echo $conn->query($sql) ? ("<div class='success' id='message'> Zmiany zostały zachowane pomyślnie! </div>") : ("<div class='error' id='message'>Wystąpił błąd! $conn->error </div>");
+}
+
+if (isset($_POST['editNaprawa'])) {
+    $id = $_POST['eid'];
+    $data = $_POST['edata'];
+    $kwota = $_POST['ekwota'];
+
+
+    $sql = "UPDATE `naprawa` SET `data_naprawy` = '$data', `kwota` = '$kwota' WHERE `naprawa`.`id` = $id";
+    echo $conn->query($sql) ? ("<div class='success' id='message'> Zmiany zostały zachowane pomyślnie! </div>") : ("<div class='error' id='message'>Wystąpił błąd! $conn->error </div>");
+}
 ?>
 
 <!DOCTYPE html>
 <html lang="pl">
 
 <body>
-    <?php echo file_get_contents('header.php'); ?>
+    <?php include('header.php'); ?>
 
     <div class="container">
         <h2>Dodaj Naprawę</h2>
@@ -56,6 +71,7 @@ if (isset($_POST['naprawaSubmit'])) {
                     <th scope="col">#</th>
                     <th scope="col">Data Naprawy</th>
                     <th scope="col">Kwota</th>
+                    <th class="text-right px-4">Actions</th>
                 </tr>
             </thead>
             <tbody>
@@ -68,6 +84,18 @@ if (isset($_POST['naprawaSubmit'])) {
                     echo "<td>" . $row["id"] . "</td>";
                     echo "<td>" . $row["data_naprawy"] . "</td>";
                     echo "<td>" . $row["kwota"] . " zł </td>";
+                    echo  "
+                    <td width='20%' class='text-right'>
+                        <button class='btn btn-info'> 
+                        <a href='editNaprawa.php?edit=" . $row["id"] . "'>
+                            <i class='fas fa-edit text-light'></i>
+                        </button>
+                        <button class='btn btn-danger'>
+                            <a href='" . $_SERVER['PHP_SELF'] . "?delete=" . $row["id"] . "'>
+                                <i class='fas fa-trash text-light'></i> 
+                            </a>
+                        </button> 
+                    </td>";
                     echo "</tr>";
                 }
                 mysqli_close($conn);
