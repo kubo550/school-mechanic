@@ -2,7 +2,7 @@
 <html lang="pl">
 
 <body>
-    <?php echo file_get_contents('header.php'); ?>
+    <?php include('header.php'); ?>
 
     <div class="container">
         <div id="carousel-example-2" class="carousel slide carousel-fade" data-ride="carousel">
