@@ -25,21 +25,36 @@ body {
 }
 
 #message {
-  width: 80vw;
-  height: 40px;
   position: absolute;
-  top: 60px;
   left: 50%;
+  top: 10%;
   transform: translateX(-50%);
-  padding: 10px;
-  background-color: aqua;
-  border: 2px solid #111;
-  z-index: 10;
+  padding: 20px;
   text-align: center;
-  border-radius: 20px;
+  width: 80%;
+  border-radius: 2rem;
+  font-size: 1.2rem;
 
   animation: vanish 3.5s linear;
   animation-fill-mode: forwards;
+}
+
+.error {
+  background: rgb(166, 0, 0);
+  background: linear-gradient(
+    302deg,
+    rgba(166, 0, 0, 0.7) 21%,
+    rgba(250, 17, 17, 0.7) 100%
+  );
+}
+
+.success {
+  background: rgb(12, 195, 153);
+  background: linear-gradient(
+    302deg,
+    rgba(12, 195, 153, 0.7) 21%,
+    rgba(18, 158, 29, 0.7) 100%
+  );
 }
 
 @keyframes vanish {
