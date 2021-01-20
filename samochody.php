@@ -12,18 +12,32 @@ if (isset($_POST['samochodySumbit'])) {
 
     $sql = "INSERT INTO `samochod` ( `id_klienta`, `marka`, `model`, `rocznik`, `przebieg`) VALUES ( '1', '$marka', '$model', '$rocznik', '$przebieg');";
 
-    if ($conn->query($sql)) {
-        echo "<div class='success' id='message'> Zmiany zostały zachowane pomyślnie! </div>";
-    } else {
-        echo "<div class='error' id='message'>Wystąpił błąd! </div>" . $conn->error;
-    }
+    echo $conn->query($sql) ? ("<div class='success' id='message'> Zmiany zostały zachowane pomyślnie! </div>") : ("<div class='error' id='message'>Wystąpił błąd! $conn->error </div>");
 }
+
+if (isset($_GET['delete'])) {
+    $id = $_GET['delete'];
+    $sql = "DELETE FROM `samochod` WHERE `samochod`.`id` = $id";
+    echo $conn->query($sql) ? ("<div class='success' id='message'> Zmiany zostały zachowane pomyślnie! </div>") : ("<div class='error' id='message'>Wystąpił błąd! $conn->error </div>");
+}
+
+if (isset($_POST['editSamochod'])) {
+    $id = $_POST['eid'];
+    $marka = $_POST['emarka'];
+    $model = $_POST['emodel'];
+    $rocznik = $_POST['erocznik'];
+    $przebieg = $_POST['eprzebieg'];
+
+    $sql = "UPDATE `samochod` SET `marka` = '$marka', `model` = '$model', `rocznik` = '$rocznik', `przebieg` = '$przebieg' WHERE `samochod`.`id` = $id";
+    echo $conn->query($sql) ? ("<div class='success' id='message'> Zmiany zostały zachowane pomyślnie! </div>") : ("<div class='error' id='message'>Wystąpił błąd! $conn->error </div>");
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="pl">
 
 <body>
-    <?php echo file_get_contents('header.php'); ?>
+    <?php include('header.php'); ?>
 
     <div class="container">
         <h2>Dodaj Samochód</h2>
@@ -65,6 +79,8 @@ if (isset($_POST['samochodySumbit'])) {
                     <th scope="col">Model</th>
                     <th scope="col">Rocznik</th>
                     <th scope="col">Przebieg</th>
+                    <th class="text-right px-4">Actions</th>
+
                 </tr>
             </thead>
             <tbody>
@@ -80,6 +96,18 @@ if (isset($_POST['samochodySumbit'])) {
                     echo "<td>" . $row["model"] . "</td>";
                     echo "<td>" . $row["rocznik"] . "</td>";
                     echo "<td>" . $row["przebieg"] . "km </td>";
+                    echo  "
+                    <td width='20%' class='text-right'>
+                        <button class='btn btn-info'> 
+                        <a href='editSamochody.php?edit=" . $row["id"] . "'>
+                            <i class='fas fa-edit text-light'></i>
+                        </button>
+                        <button class='btn btn-danger'>
+                            <a href='" . $_SERVER['PHP_SELF'] . "?delete=" . $row["id"] . "'>
+                                <i class='fas fa-trash text-light'></i> 
+                            </a>
+                        </button> 
+                    </td>";
                     echo "</tr>";
                 }
                 mysqli_close($conn);
