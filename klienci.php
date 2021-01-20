@@ -12,15 +12,34 @@ if (isset($_POST['klientSubmit'])) {
 
     $sql = "INSERT INTO klient ( imie, nazwisko, telefon, adres) VALUES ('$imie', '$nazwisko', '$telefon', '$adres');";
 
-    echo $conn->query($sql) ? ("<div class='success' id='message'> Zmiany zostały zachowane pomyślnie! </div>") : ("<div class='error' id='message'>Wystąpił błąd! </div>" . $conn->error);
+    echo $conn->query($sql) ? ("<div class='success' id='message'> Zmiany zostały zachowane pomyślnie! </div>") : ("<div class='error' id='message'>Wystąpił błąd! $conn->error </div>");
 };
+
+if (isset($_GET['delete'])) {
+    $id = $_GET['delete'];
+    $sql = "DELETE FROM `klient` WHERE `klient`.`id` = $id";
+    echo $conn->query($sql) ? ("<div class='success' id='message'> Zmiany zostały zachowane pomyślnie! </div>") : ("<div class='error' id='message'>Wystąpił błąd! $conn->error </div>");
+}
+
+if (isset($_POST['editKlient'])) {
+    $id = $_POST['eid'];
+    $imie = $_POST['eimie'];
+    $nazwisko = $_POST['enazwisko'];
+    $telefon = $_POST['etelefon'];
+    $adres = $_POST['eadres'];
+
+    $sql = "UPDATE `klient` SET `imie` = '$imie', `nazwisko` = '$nazwisko', `telefon` = '$telefon', `adres` = '$adres' WHERE `klient`.`id` = $id";
+    echo $conn->query($sql) ? ("<div class='success' id='message'> Zmiany zostały zachowane pomyślnie! </div>") : ("<div class='error' id='message'>Wystąpił błąd! $conn->error </div>");
+}
+
+
 ?>
 
 <!DOCTYPE html>
 <html lang="pl">
 
 <body>
-    <?php echo file_get_contents('header.php'); ?>
+    <?php include('header.php'); ?>
 
     <div class="container">
         <h2>Dodaj Klienta</h2>
@@ -61,6 +80,7 @@ if (isset($_POST['klientSubmit'])) {
                     <th scope="col">Imię</th>
                     <th scope="col">Nazwisko</th>
                     <th scope="col">Telefon</th>
+                    <th class="text-right px-4">Actions</th>
                 </tr>
             </thead>
             <tbody>
@@ -68,12 +88,25 @@ if (isset($_POST['klientSubmit'])) {
                 $query = "SELECT * FROM `klient`";
                 $res = mysqli_query($conn, $query);
 
+
                 while ($row = mysqli_fetch_assoc($res)) {
                     echo "<tr>";
-                    echo "<th scope='row'>" . $row["id"] . "</th>";
-                    echo "<td>" . $row["imie"] . "</td>";
-                    echo "<td>" . $row["nazwisko"] . "</td>";
-                    echo "<td>" . $row["telefon"] . "</td>";
+                    echo "<th width='10%' scope='row'>" . $row["id"] . "</th>";
+                    echo "<td width='20%'>" . $row["imie"] . "</td>";
+                    echo "<td width='30%'>" . $row["nazwisko"] . "</td>";
+                    echo "<td width='20%'>" . $row["telefon"] . "</td>";
+                    echo  "
+                    <td width='20%' class='text-right'>
+                        <button class='btn btn-info'> 
+                        <a href='editKlienci.php?edit=" . $row["id"] . "'>
+                            <i class='fas fa-edit text-light'></i>
+                        </button>
+                        <button class='btn btn-danger'>
+                            <a href='" . $_SERVER['PHP_SELF'] . "?delete=" . $row["id"] . "'>
+                                <i class='fas fa-trash text-light'></i> 
+                            </a>
+                        </button> 
+                    </td>";
                     echo "</tr>";
                 }
                 mysqli_close($conn);
