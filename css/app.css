@@ -27,23 +27,30 @@ body {
 }
 
 #message {
-  width: 80vw;
-  height: 40px;
   position: absolute;
-  top: 60px;
   left: 50%;
+  top: 10%;
   -webkit-transform: translateX(-50%);
           transform: translateX(-50%);
-  padding: 10px;
-  background-color: aqua;
-  border: 2px solid #111;
-  z-index: 10;
+  padding: 20px;
   text-align: center;
-  border-radius: 20px;
+  width: 80%;
+  border-radius: 2rem;
+  font-size: 1.2rem;
   -webkit-animation: vanish 3.5s linear;
           animation: vanish 3.5s linear;
   -webkit-animation-fill-mode: forwards;
           animation-fill-mode: forwards;
+}
+
+.error {
+  background: #a60000;
+  background: linear-gradient(302deg, rgba(166, 0, 0, 0.7) 21%, rgba(250, 17, 17, 0.7) 100%);
+}
+
+.success {
+  background: #0cc399;
+  background: linear-gradient(302deg, rgba(12, 195, 153, 0.7) 21%, rgba(18, 158, 29, 0.7) 100%);
 }
 
 @-webkit-keyframes vanish {
